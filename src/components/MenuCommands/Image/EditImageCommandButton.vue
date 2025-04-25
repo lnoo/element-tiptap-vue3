@@ -146,7 +146,6 @@ export default defineComponent({
       });
       try {
         const url = await readFileDataUrl(file);
-        console.log(url)
         this.imageAttrs.src = url
       } catch (e) {
         Logger.error(String(e));

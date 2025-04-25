@@ -23,6 +23,23 @@ export function isTableActive(state: EditorState): boolean {
   return active;
 }
 
+export function isTablePlaceholder(state: EditorState): boolean {
+  const { selection, doc } = state;
+  const { from } = selection;
+
+  let placeholder = false;
+
+  doc.nodesBetween(from, from, (node) => {
+    if (node.type.name === 'table') {
+      placeholder = !!node.attrs?.isPlaceholder;
+      return false; // 找到了，停止遍历
+    }
+    return true;
+  });
+
+  return placeholder;
+}
+
 export function enableMergeCells(state: EditorState): boolean {
   return isTableActive(state) && mergeCells(state);
 }
