@@ -1,51 +1,37 @@
 <template>
-  <div
-    v-if="editor"
-    :style="editorStyle"
-    :class="[
-      {
-        'el-tiptap-editor': true,
-        'el-tiptap-editor--fullscreen': isFullscreen,
-        'el-tiptap-editor--with-footer': showFooter,
-      },
-      editorClass,
-    ]"
-  >
+  <div v-if="editor" :style="editorStyle" :class="[
+    {
+      'el-tiptap-editor': true,
+      'el-tiptap-editor--fullscreen': isFullscreen,
+      'el-tiptap-editor--with-footer': showFooter,
+    },
+    editorClass,
+  ]">
     <div>
       <menu-bubble :editor="editor" :class="editorBubbleMenuClass" />
     </div>
     <div>
       <menu-bar :editor="editor" :class="editorMenubarClass" />
     </div>
-    <div
-      v-if="isCodeViewMode"
-      :class="{
-        'el-tiptap-editor__codemirror': true,
-        'border-bottom-radius': isCodeViewMode,
-      }"
-    >
+    <div v-if="isCodeViewMode" :class="{
+      'el-tiptap-editor__codemirror': true,
+      'border-bottom-radius': isCodeViewMode,
+    }">
       <textarea ref="cmTextAreaRef"></textarea>
     </div>
-    <editor-content
-      v-show="!isCodeViewMode"
-      :editor="editor"
-      :class="[
-        {
-          'el-tiptap-editor__content': true,
-        },
-        editorContentClass,
-      ]"
-    />
+    <editor-content v-show="!isCodeViewMode" :editor="editor" :class="[
+      {
+        'el-tiptap-editor__content': true,
+      },
+      editorContentClass,
+    ]" />
 
-    <div
-      v-if="showFooter"
-      :class="[
-        {
-          'el-tiptap-editor__footer': true,
-        },
-        editorFooterClass,
-      ]"
-    >
+    <div v-if="showFooter" :class="[
+      {
+        'el-tiptap-editor__footer': true,
+      },
+      editorFooterClass,
+    ]">
       <span class="el-tiptap-editor__characters">
         {{ t('editor.characters') }}: {{ characters }}
       </span>
@@ -153,7 +139,7 @@ export default defineComponent({
     },
     editorProps: {
       type: Object as () => EditorProps,
-      default: () => {}
+      default: () => { }
     },
     charCountMax: {
       type: Number,
@@ -219,7 +205,7 @@ export default defineComponent({
       }
     });
     const uniqueObjects = [];
-    const seenValues = {} as {[key: string]: boolean};
+    const seenValues = {} as { [key: string]: boolean };
     // remove duplicate extensions
     for (let i = 0; i < additionalExtensions.length; i++) {
       const obj = additionalExtensions[i];
@@ -257,6 +243,9 @@ export default defineComponent({
         emit('onDestroy', options);
       },
       onUpdate,
+      onSelectionUpdate: (options) => {
+        emit('onSelectionUpdate', options);
+      },
     });
 
     watchEffect(() => {
@@ -296,7 +285,7 @@ export default defineComponent({
       return props.enableCharCount && !unref(isCodeViewMode);
     });
     // Reactive prop content
-    function setContent(value:any) {
+    function setContent(value: any) {
       if (editor.value) {
         editor.value.commands.setContent(value);
       }
