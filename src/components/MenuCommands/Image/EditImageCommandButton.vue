@@ -20,7 +20,7 @@
           </el-upload>
         </el-form-item>
 
-        <el-form-item :label="t('editor.extensions.Image.control.edit_image.form.alt') + '哈哈123'">
+        <el-form-item :label="t('editor.extensions.Image.control.edit_image.form.alt')">
           <el-input v-model="imageAttrs.alt" autocomplete="off" />
         </el-form-item>
 
