@@ -20,7 +20,7 @@
           </el-upload>
         </el-form-item>
 
-        <el-form-item :label="t('editor.extensions.Image.control.edit_image.form.alt')">
+        <el-form-item :label="t('editor.extensions.Image.control.edit_image.form.alt') + '哈哈123'">
           <el-input v-model="imageAttrs.alt" autocomplete="off" />
         </el-form-item>
 
@@ -83,8 +83,8 @@ export default defineComponent({
   },
 
   props: {
-    node: nodeViewProps['node'],
-    updateAttrs: nodeViewProps['updateAttributes'],
+    node: nodeViewProps.node,
+    updateAttrs: nodeViewProps.updateAttributes,
     buttonIcon: {
       default: '',
       type: String
@@ -146,7 +146,7 @@ export default defineComponent({
       });
       try {
         const url = await readFileDataUrl(file);
-        this.imageAttrs.src = url
+        this.imageAttrs.src = url;
       } catch (e) {
         Logger.error(String(e));
       } finally {
