@@ -1,62 +1,29 @@
 <template>
   <node-view-wrapper as="span" :class="imageViewClass">
-    <div
-      :class="{
-        'image-view__body--focused': selected && editor?.isEditable && !isDragging,
-        'image-view__body--resizing': resizing && editor?.isEditable && !isDragging,
-        'image-view__body': editor?.isEditable
-      }"
-    >
-      <img
-        contenteditable="false"
-        draggable="false"
-        ref="content"
-        :src="src"
-        :title="node!.attrs.title"
-        :alt="node!.attrs.alt"
-        :width="width"
-        :height="height"
-        class="image-view__body__image"
-        @click="selectImage"
-      />
-      <span
-        v-if="node.attrs.draggable"
-        class="mover-button"
-        :data-drag-handle="node.attrs.draggable"
-        @mousedown.left="startDragging()"
-      >
+    <div :class="{
+      'image-view__body--focused': selected && editor?.isEditable && !isDragging,
+      'image-view__body--resizing': resizing && editor?.isEditable && !isDragging,
+      'image-view__body': editor?.isEditable
+    }">
+      <img contenteditable="false" draggable="false" ref="content" :src="src" :title="node!.attrs.title"
+        :alt="node!.attrs.alt" :isPlaceholder="node!.attrs.isPlaceholder" :width="width" :height="height"
+        class="image-view__body__image" @click="selectImage" />
+      <span v-if="node.attrs.draggable" class="mover-button" :data-drag-handle="node.attrs.draggable"
+        @mousedown.left="startDragging()">
         ✥
       </span>
 
-      <div
-        v-if="editor?.isEditable"
-        v-show="(selected || resizing) && !isDragging"
-        class="image-resizer drag-handle"
-      >
-        <span
-          v-for="direction in resizeDirections"
-          :key="direction"
-          :class="`image-resizer__handler--${direction}`"
-          class="image-resizer__handler"
-          @mousedown="onMouseDown($event, direction)"
-        />
+      <div v-if="editor?.isEditable" v-show="(selected || resizing) && !isDragging" class="image-resizer drag-handle">
+        <span v-for="direction in resizeDirections" :key="direction" :class="`image-resizer__handler--${direction}`"
+          class="image-resizer__handler" @mousedown="onMouseDown($event, direction)" />
       </div>
 
       <!-- when image is break text or float
       bubble menu's position is miscalculated
       use el-popover instead bubble menu -->
-      <el-popover
-        :visible="selected && !isDragging"
-        :disabled="!editor?.isEditable"
-        :show-arrow="false"
-        placement="top"
-        popper-class="el-tiptap-image-popper"
-      >
-        <image-bubble-menu
-          :node="node"
-          :editor="editor"
-          :update-attrs="updateAttributes"
-        />
+      <el-popover :visible="selected && !isDragging" :disabled="!editor?.isEditable" :show-arrow="false" placement="top"
+        popper-class="el-tiptap-image-popper">
+        <image-bubble-menu :node="node" :editor="editor" :update-attrs="updateAttributes" />
 
         <template #reference>
           <div class="image-view__body__placeholder" />

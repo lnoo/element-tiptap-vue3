@@ -129,6 +129,7 @@ export default defineComponent({
       height = parseInt(height as string, 10);
 
       this.updateAttrs!({
+        isPlaceholder: this.node!.attrs.isPlaceholder,
         alt: this.imageAttrs.alt,
         width: width >= 0 ? width : null,
         height: height >= 0 ? height : null,
