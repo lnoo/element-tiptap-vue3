@@ -39,7 +39,7 @@ export default ({ mode }) => {
       },
     },
     server: {
-      port: 8080,
+      port: 8899,
     },
     resolve: {
       alias: [
