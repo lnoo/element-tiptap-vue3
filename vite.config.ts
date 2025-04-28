@@ -53,7 +53,7 @@ export default ({ mode }) => {
         },
         {
           find: 'element-tiptap-vue3-fixed',
-          replacement: path.resolve(__dirname, './lib/element-tiptap-vue3-fixed.es.js'),
+          replacement: path.resolve(__dirname, './src/index.ts'),
         },
       ],
     },
