@@ -13,7 +13,7 @@
           @mousedown="hidePopover" @click="editor.commands.addColumnBefore">
           <span>{{
             t('editor.extensions.Table.buttons.add_column_before')
-          }}</span>
+            }}</span>
         </div>
 
         <div :class="{ 'el-tiptap-popper__menu__item--disabled': !isTableActive }" class="el-tiptap-popper__menu__item"
@@ -123,7 +123,6 @@ export default defineComponent({
 
   computed: {
     isTableActive() {
-      console.log(this.editor.getJSON());
       return isTableActive(this.editor.state);
     },
     isTablePlaceholder() {
