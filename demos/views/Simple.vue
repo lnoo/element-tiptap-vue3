@@ -69,9 +69,6 @@ const extensions = [
   }),
   Fullscreen,
   History,
-  Table.configure({
-    isPlaceholder: true
-  }),
   TextPlaceholder,
 ];
 

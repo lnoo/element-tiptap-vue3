@@ -7,7 +7,7 @@
     <el-dialog v-model="editImageDialogVisible" :title="t('editor.extensions.Image.control.edit_image.title')"
       :append-to-body="true" width="400px" class="el-tiptap-edit-image-dialog" @open="syncImageAttrs">
       <el-form :model="imageAttrs" label-position="top" size="small">
-        <el-form-item v-if="!imageAttrs.isPlaceholder"
+        <el-form-item
           :label="t('editor.extensions.Image.control.edit_image.form.src')">
           <el-upload style="width: 100%;" :http-request="uploadImage" :show-file-list="false" class="el-tiptap-upload"
             action="#" drag accept="image/*">
@@ -113,7 +113,6 @@ export default defineComponent({
 
     getImageAttrs() {
       return {
-        isPlaceholder: this.node!.attrs.isPlaceholder,
         src: this.node!.attrs.src,
         alt: this.node!.attrs.alt,
         width: this.node!.attrs.width,
@@ -129,7 +128,6 @@ export default defineComponent({
       height = parseInt(height as string, 10);
 
       this.updateAttrs!({
-        isPlaceholder: this.node!.attrs.isPlaceholder,
         alt: this.imageAttrs.alt,
         width: width >= 0 ? width : null,
         height: height >= 0 ? height : null,

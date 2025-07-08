@@ -13,7 +13,6 @@ import {
 interface CustomImageOptions extends ImageOptions {
   defaultWidth: number | null;
   draggable: boolean;
-  isPlaceholder: boolean;
 }
 const Image = TiptapImage.extend<CustomImageOptions>({
   // https://github.com/ueberdosis/tiptap/issues/1206
@@ -86,9 +85,6 @@ const Image = TiptapImage.extend<CustomImageOptions>({
       draggable: {
         default: this.options.draggable
       },
-      isPlaceholder: {
-        default: this.options.isPlaceholder
-      }
     };
   },
 
@@ -101,7 +97,6 @@ const Image = TiptapImage.extend<CustomImageOptions>({
       uploadRequest: null,
       urlPattern: DEFAULT_IMAGE_URL_REGEX,
       draggable: false,
-      isPlaceholder: false,
       button({ editor, extension }: { editor: Editor; extension: any; t: (...args: any[]) => string }) {
         return {
           component: InsertImageCommandButton,

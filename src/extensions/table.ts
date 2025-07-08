@@ -5,24 +5,16 @@ import TableHeader from '@tiptap/extension-table-header';
 import TableCell from '@tiptap/extension-table-cell';
 import TablePopover from '@/components/MenuCommands/TablePopover/index.vue';
 
-interface CustomOptions extends TableOptions {
-  isPlaceholder: boolean;
-}
-
-const Table = TiptapTable.extend<CustomOptions>({
+const Table = TiptapTable.extend<TableOptions>({
   addAttributes() {
     return {
       ...this.parent?.(),
-      isPlaceholder: {
-        default: this.options.isPlaceholder
-      }
     };
   },
   addOptions() {
     return {
       ...this.parent?.(),
       buttonIcon: '',
-      isPlaceholder: false,
       button({ editor, extension }: { editor: Editor; extension: any; t: (...args: any[]) => string }) {
         return {
           component: TablePopover,

@@ -6,7 +6,7 @@
       'image-view__body': editor?.isEditable
     }">
       <img contenteditable="false" draggable="false" ref="content" :src="src" :title="node!.attrs.title"
-        :alt="node!.attrs.alt" :isPlaceholder="node!.attrs.isPlaceholder" :width="width" :height="height"
+        :alt="node!.attrs.alt" :width="width" :height="height"
         class="image-view__body__image" @click="selectImage" />
       <span v-if="node.attrs.draggable" class="mover-button" :data-drag-handle="node.attrs.draggable"
         @mousedown.left="startDragging()">
